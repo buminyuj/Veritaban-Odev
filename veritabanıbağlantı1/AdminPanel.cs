@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -46,6 +46,207 @@ namespace veritabanıbağlantı1
                 }
             }
         }
+
+        public void SearchPersonelAd()
+        {
+            try
+            {
+                string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True"; // Bağlantı dizesini kendi veritabanı bağlantınıza uygun şekilde değiştirin.
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string querySearch = "SELECT * FROM Personel WHERE PersonelAd=@Ad";
+
+
+                    using (SqlCommand command = new SqlCommand(querySearch, connection))
+                    {
+
+                        command.Parameters.AddWithValue("@Ad", textBox5.Text);
+
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        dataGridView1.DataSource = dt;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Bir hata oluştu: " + ex.ToString());
+            }
+            textBox5.Clear();
+        } //hepsi aynı kod sadece farklı textboxlardan değer almak için aradıkları column ve bilgi aldıkları textbox değişiyor
+        public void SearchPersonelSoyad()
+        {
+            try
+            {
+                string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True"; // Bağlantı dizesini kendi veritabanı bağlantınıza uygun şekilde değiştirin.
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string querySearch = "SELECT * FROM Personel WHERE PersonelSoyad=@Soyad";
+
+
+                    using (SqlCommand command = new SqlCommand(querySearch, connection))
+                    {
+
+                        command.Parameters.AddWithValue("@Soyad", textBox6.Text);
+
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        dataGridView1.DataSource = dt;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Bir hata oluştu: " + ex.ToString());
+            }
+            textBox6.Clear();
+        }
+        public void SearchPersonelRol()
+        {
+            try
+            {
+                string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True"; // Bağlantı dizesini kendi veritabanı bağlantınıza uygun şekilde değiştirin.
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string querySearch = "SELECT * FROM Personel WHERE PersonelRol=@Rol";
+
+
+                    using (SqlCommand command = new SqlCommand(querySearch, connection))
+                    {
+
+                        command.Parameters.AddWithValue("@Rol", textBox7.Text);
+
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        dataGridView1.DataSource = dt;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Bir hata oluştu: " + ex.ToString());
+            }
+            textBox7.Clear();
+        }
+        public void SearchPersonelId()
+        {
+            try
+            {
+                string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True"; // Bağlantı dizesini kendi veritabanı bağlantınıza uygun şekilde değiştirin.
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string querySearch = "SELECT * FROM Personel WHERE PersonelId=@Id";
+
+
+                    using (SqlCommand command = new SqlCommand(querySearch, connection))
+                    {
+
+                        command.Parameters.AddWithValue("@Id", textBox8.Text);
+
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        dataGridView1.DataSource = dt;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Bir hata oluştu: " + ex.ToString());
+            }
+            textBox8.Clear();
+        }
+        public void SearchPersonelMaas()
+        {
+            try
+            {
+                string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True"; // Bağlantı dizesini kendi veritabanı bağlantınıza uygun şekilde değiştirin.
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string querySearch = "SELECT * FROM Personel WHERE PersonalMaas=@Maas";
+
+
+                    using (SqlCommand command = new SqlCommand(querySearch, connection))
+                    {
+
+                        command.Parameters.AddWithValue("@Maas", textBox9.Text);
+
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        dataGridView1.DataSource = dt;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Bir hata oluştu: " + ex.ToString());
+            }
+            textBox9.Clear();
+        }
+        public void SearchPersonelByDate()
+        {
+            try
+            {
+                string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // MaskedTextBox'ın içeriğini DateTime'a çevirme
+                    if (DateTime.TryParse(maskedTextBox2.Text, out DateTime selectedDate))
+                    {
+                        // Eğer başarıyla çevrilebilirse, sorguyu çalıştır
+                        string querySearch = "SELECT * FROM Personel WHERE IseAlimTarihi = @IseAlimTarihi";
+
+                        using (SqlCommand command = new SqlCommand(querySearch, connection))
+                        {
+                            command.Parameters.AddWithValue("@IseAlimTarihi", selectedDate);
+
+                            SqlDataAdapter adapter = new SqlDataAdapter(command);
+                            DataTable dt = new DataTable();
+                            adapter.Fill(dt);
+                            dataGridView1.DataSource = dt;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Geçerli bir tarih giriniz.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Bir hata oluştu: " + ex.ToString());
+            }
+
+            maskedTextBox2.Clear(); // MaskedTextBox'ı temizle
+        }
+
 
         public void DeletePersonal(int id)
         {
@@ -214,6 +415,40 @@ namespace veritabanıbağlantı1
             maskedTextBox1.Text = dataGridView1.Rows[i].Cells[3].Value as string;
 
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (textBox5.Text.Trim() != "")
+            {
+                // TextBox5 doluysa SearchPersonelAd fonksiyonunu çağır
+                SearchPersonelAd();
+            }
+            else if (textBox6.Text.Trim() != "")
+            {
+                // TextBox6 doluysa SearchPersonelSoyad fonksiyonunu çağır
+                SearchPersonelSoyad();
+            }
+            else if (textBox7.Text.Trim() != "")
+            // TextBox7 doluysa SearchPersonelSoyad fonksiyonunu çağır
+            {
+                SearchPersonelRol();
+            }
+            else if (textBox8.Text.Trim() != "")
+            {
+                // TextBox8 doluysa SearchPersonelSoyad fonksiyonunu çağır
+                SearchPersonelId();
+            }
+            else if (textBox9.Text.Trim() != "")
+            {
+                SearchPersonelMaas();
+            }
+            else if (maskedTextBox2.Text.Trim() != "")
+            {
+               SearchPersonelByDate();
+            }
+
+            AdminPanelineDön();
         }
     }
 }
