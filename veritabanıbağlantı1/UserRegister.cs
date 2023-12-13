@@ -96,5 +96,6 @@ namespace veritabanıbağlantı1
         {
 
         }
+        //denemeregister
     }
 }
