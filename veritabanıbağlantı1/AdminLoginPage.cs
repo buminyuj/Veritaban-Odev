@@ -24,9 +24,9 @@ namespace veritabanıbağlantı1
         private void button1_Click(object sender, EventArgs e)
         {
             string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True";
-            string Ad = textBox2.Text;
-            string Soyad = textBox3.Text;
-            string Rol = textBox1.Text;
+            string Ad = textBox2.Text.ToLower();
+            string Soyad = textBox3.Text.ToLower();
+            string Rol = textBox1.Text.ToLower();
             string Email = textBox4.Text;
             string Sifre = textBox5.Text;
 
@@ -52,19 +52,19 @@ namespace veritabanıbağlantı1
 
                             switch (personelRol)
                             {
-                                case "Admin":
-                                    MessageBox.Show("Tebrikler Giriş Başarılı! Admin Paneline Yönlendiriliyorsunuz.");
-                                    AdminPanel adminPanel = new AdminPanel();
-                                    adminPanel.Show();
+                                case "admin":
+                                    MessageBox.Show("Tebrikler Giriş Başarılı! Admin Seçim Paneline Yönlendiriliyorsunuz.");
+                                    AdminSelectionPanel adminSelectionPanel = new AdminSelectionPanel();
+                                    adminSelectionPanel.Show();
                                     break;
 
-                                case "Teknik":
+                                case "teknik":
                                     MessageBox.Show("Tebrikler Giriş Başarılı! Teknik Paneline Yönlendiriliyorsunuz.");
                                     TeknikPanel teknikPanel = new TeknikPanel();
                                     teknikPanel.Show();
                                     break;
 
-                                case "Personel":
+                                case "personel":
                                     MessageBox.Show("Tebrikler Giriş Başarılı! Personel Paneline Yönlendiriliyorsunuz.");
                                     PersonelPanel personelPanel = new PersonelPanel();
                                     personelPanel.Show();

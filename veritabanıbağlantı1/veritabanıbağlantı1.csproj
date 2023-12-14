@@ -60,6 +60,24 @@
     <Compile Include="AdminLoginPage.Designer.cs">
       <DependentUpon>AdminLoginPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminOrderPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminOrderPanel.Designer.cs">
+      <DependentUpon>AdminOrderPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminProductPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminProductPanel.Designer.cs">
+      <DependentUpon>AdminProductPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSelectionPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminSelectionPanel.Designer.cs">
+      <DependentUpon>AdminSelectionPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="CommonLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +133,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminLoginPage.resx">
       <DependentUpon>AdminLoginPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminOrderPanel.resx">
+      <DependentUpon>AdminOrderPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminProductPanel.resx">
+      <DependentUpon>AdminProductPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminSelectionPanel.resx">
+      <DependentUpon>AdminSelectionPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CommonLogin.resx">
       <DependentUpon>CommonLogin.cs</DependentUpon>
