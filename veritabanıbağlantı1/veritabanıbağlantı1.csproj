@@ -54,6 +54,12 @@
       <DependentUpon>AdminPanel.cs</DependentUpon>
       <Link>AdminPanel.Designer.cs</Link>
     </Compile>
+    <Compile Include="AdminLoginPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminLoginPage.Designer.cs">
+      <DependentUpon>AdminLoginPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="CommonLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,9 @@
     <EmbeddedResource Include="..\..\..\AdminPanel.resx">
       <DependentUpon>AdminPanel.cs</DependentUpon>
       <Link>AdminPanel.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminLoginPage.resx">
+      <DependentUpon>AdminLoginPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CommonLogin.resx">
       <DependentUpon>CommonLogin.cs</DependentUpon>
