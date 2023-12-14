@@ -16,7 +16,7 @@ namespace veritabanıbağlantı1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CommonLogin());//full hali için LoginSelectPanel() gelecek CommonLogin AdminPanel
+            Application.Run(new AdminProductPanel());//full hali için LoginSelectPanel() gelecek CommonLogin AdminPanel
         }
     }
 }
