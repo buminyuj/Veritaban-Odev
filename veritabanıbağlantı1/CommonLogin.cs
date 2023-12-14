@@ -17,11 +17,19 @@ namespace veritabanıbağlantı1
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)//user login
         {
             Form1 geçiş = new Form1();
             geçiş.Show();
             this.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e)//admin(PERSONEL GİRİŞ NORMALDE)login
+        {
+            AdminLoginPage geçiş = new AdminLoginPage();
+            geçiş.Show();
+            this.Hide();
+            
         }
     }
 }
