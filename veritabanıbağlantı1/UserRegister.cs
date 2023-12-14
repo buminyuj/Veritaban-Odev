@@ -49,7 +49,7 @@ namespace veritabanıbağlantı1
             {
                 if(şifre.Equals(şifreTekrar)){
                     MessageBox.Show("Tebrikler Kayıt Başarılı!");
-                    Form1 geçiş = new Form1();
+                    LoginSelectPanel geçiş = new LoginSelectPanel();
                     geçiş.Show();
                     this.Hide();
                 }

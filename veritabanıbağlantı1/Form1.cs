@@ -63,6 +63,9 @@ namespace veritabanıbağlantı1
                 if (dr.Read())
                 {
                     MessageBox.Show("Tebrikler Giriş Başarılı!");
+                    UserPanel geçiş = new UserPanel();
+                    geçiş.Show();
+                    this.Hide();
 
                     // Başarılı giriş sonrasında kullanıcıya soru sor
                     DialogResult result = MessageBox.Show("Çıkış yapmak istiyor musunuz?", "Çıkış", MessageBoxButtons.YesNo);
