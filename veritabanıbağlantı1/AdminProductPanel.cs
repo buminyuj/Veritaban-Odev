@@ -193,11 +193,225 @@ namespace veritabanıbağlantı1
                 AdminProductPanelineDön();
             }
         }
+        public void SearchProductName()
+        {
+            try
+            {
+                string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True";
+                SqlConnection connection = new SqlConnection(connectionString);
+                string querySearchProductName = "SELECT * FROM Urun Where UrunAdi=@UrunAdi";
+                SqlCommand command = new SqlCommand(querySearchProductName, connection);
+                command.Parameters.AddWithValue("@UrunAdi", textBox8.Text);
+                System.Data.DataTable dt = new System.Data.DataTable();
+                SqlDataAdapter adptr = new SqlDataAdapter(command);
+                adptr.Fill(dt);
+                dataGridView1.DataSource = dt;
+                connection.Close();
+
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Bir hata oluştu: " + ex.ToString());
+            }
+            textBox8.Clear();
+        }
+
+
+        public void SearchProductBrand()
+        {
+            try
+            {
+                string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True";
+                SqlConnection connection = new SqlConnection(connectionString);
+                string querySearchProductBrand = "SELECT * FROM Urun Where Marka=@Marka";
+                SqlCommand command = new SqlCommand(querySearchProductBrand, connection);
+                command.Parameters.AddWithValue("@Marka", textBox9.Text);
+                System.Data.DataTable dt = new System.Data.DataTable();
+                SqlDataAdapter adptr = new SqlDataAdapter(command);
+                adptr.Fill(dt);
+                dataGridView1.DataSource = dt;
+                connection.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Bir hata oluştu: " + ex.ToString());
+            }
+            textBox9.Clear();
+        }
+
+        public void SearchProductModel()
+        {
+            try
+            {
+                string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True";
+                SqlConnection connection = new SqlConnection(connectionString);
+                string querySearchProductBrand = "SELECT * FROM Urun Where Model=@Model";
+                SqlCommand command = new SqlCommand(querySearchProductBrand, connection);
+                command.Parameters.AddWithValue("@Model", textBox10.Text);
+                System.Data.DataTable dt = new System.Data.DataTable();
+                SqlDataAdapter adptr = new SqlDataAdapter(command);
+                adptr.Fill(dt);
+                dataGridView1.DataSource = dt;
+                connection.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Bir hata oluştu: " + ex.ToString());
+            }
+            textBox10.Clear();
+        }
+
+        public void SearchProductPrice()
+        {
+            try
+            {
+                string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True";
+                SqlConnection connection = new SqlConnection(connectionString);
+                string querySearchProductBrand = "SELECT * FROM Urun Where Fiyat=@Fiyat";
+                SqlCommand command = new SqlCommand(querySearchProductBrand, connection);
+                command.Parameters.AddWithValue("@Fiyat", textBox11.Text);
+                System.Data.DataTable dt = new System.Data.DataTable();
+                SqlDataAdapter adptr = new SqlDataAdapter(command);
+                adptr.Fill(dt);
+                dataGridView1.DataSource = dt;
+                connection.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Bir hata oluştu: " + ex.ToString());
+            }
+            textBox11.Clear();
+        }
+
+        public void SearchProductStock()
+        {
+            try
+            {
+                string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True";
+                SqlConnection connection = new SqlConnection(connectionString);
+                string querySearchProductBrand = "SELECT * FROM Urun Where StokMiktari=@StokMiktari";
+                SqlCommand command = new SqlCommand(querySearchProductBrand, connection);
+                command.Parameters.AddWithValue("@StokMiktari", textBox12.Text);
+                System.Data.DataTable dt = new System.Data.DataTable();
+                SqlDataAdapter adptr = new SqlDataAdapter(command);
+                adptr.Fill(dt);
+                dataGridView1.DataSource = dt;
+                connection.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Bir hata oluştu: " + ex.ToString());
+            }
+            textBox12.Clear();
+        }
+
+        public void SearchProductWarrantyPeriod()
+        {
+            try
+            {
+                string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True";
+                SqlConnection connection = new SqlConnection(connectionString);
+                string querySearchProductBrand = "SELECT * FROM Urun Where GarantiSuresi=@GarantiSuresi";
+                SqlCommand command = new SqlCommand(querySearchProductBrand, connection);
+                command.Parameters.AddWithValue("@GarantiSuresi", textBox13.Text);
+                System.Data.DataTable dt = new System.Data.DataTable();
+                SqlDataAdapter adptr = new SqlDataAdapter(command);
+                adptr.Fill(dt);
+                dataGridView1.DataSource = dt;
+                connection.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Bir hata oluştu: " + ex.ToString());
+            }
+            textBox13.Clear();
+        }
+
+        public void SearchProductFeatures()
+        {
+            try
+            {
+                string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True";
+                SqlConnection connection = new SqlConnection(connectionString);
+                string querySearchProductBrand = "SELECT * FROM Urun Where Ozellikler=@Ozellikler";
+                SqlCommand command = new SqlCommand(querySearchProductBrand, connection);
+                // Veri türünü belirt
+                command.Parameters.AddWithValue("@Ozellikler", textBox14.Text);
+                System.Data.DataTable dt = new System.Data.DataTable();
+                SqlDataAdapter adptr = new SqlDataAdapter(command);
+                adptr.Fill(dt);
+                dataGridView1.DataSource = dt;
+                connection.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Bir hata oluştu: " + ex.ToString());
+            }
+            textBox14.Clear();
+        }
+
+
+
+        private void button6_Click(object sender, EventArgs e)//Urun arama butonu
+        {
+            if(textBox8.Text.Trim() != "") 
+            {
+                SearchProductName();
+            }
+            else if (textBox9.Text.Trim() != "")
+            {
+                SearchProductBrand();
+            }
+            else if (textBox10.Text.Trim() != "")
+            {
+                SearchProductModel();
+            }
+            else if (textBox11.Text.Trim() != "")
+            {
+                SearchProductPrice();
+            }
+            else if (textBox12.Text.Trim() != "")
+            {
+                SearchProductStock();
+            }
+            else if (textBox13.Text.Trim() != "")
+            {
+                SearchProductWarrantyPeriod();
+            }
+            else if (textBox14.Text.Trim() != "")
+            {
+                SearchProductFeatures();
+            }
+            AdminProductPanelineDön();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            dataGridView1.SelectAll();
+            DataObject copydata = dataGridView1.GetClipboardContent();
+            if (copydata != null) Clipboard.SetDataObject(copydata);
+            Microsoft.Office.Interop.Excel.Application xlapp = new Microsoft.Office.Interop.Excel.Application();
+            xlapp.Visible = true;
+            Microsoft.Office.Interop.Excel.Workbook xlwbook;
+            Microsoft.Office.Interop.Excel.Worksheet xlsheet;
+            object miseddata = System.Reflection.Missing.Value;
+            xlwbook = xlapp.Workbooks.Add(miseddata);
+
+            xlsheet = (Microsoft.Office.Interop.Excel.Worksheet)xlwbook.Worksheets.get_Item(1);
+            Microsoft.Office.Interop.Excel.Range xlr = (Microsoft.Office.Interop.Excel.Range)xlsheet.Cells[1, 1];
+            xlr.Select();
+            xlsheet.Columns.ColumnWidth = 15;
+            xlsheet.Rows.RowHeight = 20;
+
+
+
+            xlsheet.PasteSpecial(xlr, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
+        }
     }
-
-    
-
-
-
 
 }
