@@ -28,7 +28,8 @@ namespace veritabanıbağlantı1
         {
             AdminSelectionPanel adminSelectionPanel = new AdminSelectionPanel();
             adminSelectionPanel.Show();
-            this.Close();
+            this.Hide();
+            
         }
         public void AdminProductPanelineDön()//admin ürün paneline dönme fonksiyonu
         {
@@ -390,7 +391,7 @@ namespace veritabanıbağlantı1
             AdminProductPanelineDön();
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void button7_Click(object sender, EventArgs e)//excele aktar butonu
         {
             dataGridView1.SelectAll();
             DataObject copydata = dataGridView1.GetClipboardContent();
