@@ -13,15 +13,25 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Data.Sql;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 
 namespace veritabanıbağlantı1
 {
     public partial class AdminProductPanel : Form
     {
+        private UserPanel userPanel;
+        public string textforlabel1;
+        public string textforlabel2;
+        public string textforlabel3;
+        public string textforlabel4;
+        public string textforlabel5;
+        public string textforlabel6;
+        public string textforlabel7;
         public AdminProductPanel()
         {
             InitializeComponent();
+            userPanel = new UserPanel();
         }
 
         private void button1_Click(object sender, EventArgs e)//admin seçim paneline geri döner
@@ -122,13 +132,13 @@ namespace veritabanıbağlantı1
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)//seçilen satırın bilgilerini textboxlara getirme
         {
             i = e.RowIndex;
-            textBox1.Text = dataGridView1.Rows[i].Cells[1].Value.ToString();
-            textBox2.Text = dataGridView1.Rows[i].Cells[2].Value.ToString();
-            textBox3.Text = dataGridView1.Rows[i].Cells[3].Value.ToString();
-            textBox4.Text = dataGridView1.Rows[i].Cells[4].Value.ToString();
-            textBox5.Text = dataGridView1.Rows[i].Cells[5].Value.ToString();
-            textBox6.Text = dataGridView1.Rows[i].Cells[6].Value.ToString();
-            textBox7.Text = dataGridView1.Rows[i].Cells[7].Value.ToString();
+             textforlabel1= textBox1.Text = dataGridView1.Rows[i].Cells[1].Value.ToString();
+            textforlabel2= textBox2.Text = dataGridView1.Rows[i].Cells[2].Value.ToString();
+            textforlabel3=textBox3.Text = dataGridView1.Rows[i].Cells[3].Value.ToString();
+            textforlabel4 = textBox4.Text = dataGridView1.Rows[i].Cells[4].Value.ToString();
+            textforlabel5 = textBox5.Text = dataGridView1.Rows[i].Cells[5].Value.ToString();
+            textforlabel6 = textBox6.Text = dataGridView1.Rows[i].Cells[6].Value.ToString();
+            textforlabel7 = textBox7.Text = dataGridView1.Rows[i].Cells[7].Value.ToString();
         }
 
         private void button4_Click(object sender, EventArgs e)//Urun Duzenleme butonu
@@ -413,6 +423,40 @@ namespace veritabanıbağlantı1
 
             xlsheet.PasteSpecial(xlr, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            // TextBox'tan indeksi alın
+            if (int.TryParse(textBox15.Text, out int labelIndex))
+            {
+                // Örneğin, UserPanel'deki yeni eklenen label'i güncellemek için:
+                userPanel.UpdateLabelText(labelIndex, $"{textforlabel1}\n{textforlabel2}\n{textforlabel3}\n{textforlabel4}\n{textforlabel5}\n{textforlabel6}\n{textforlabel7}");
+                MessageBox.Show("Label Başarıyla Güncellendi!");
+
+                // Formu gizle
+                //userPanel.Hide();
+
+                // Ana ekranı göster
+                DialogResult result = MessageBox.Show("Ana ekranı görmek istiyor musunuz?", "Gör", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    userPanel.Show();
+                    DialogResult result2 = MessageBox.Show("Ana ekranı kapatmak istiyor musunuz?", "Kapat", MessageBoxButtons.YesNo);
+                    if ( result2 == DialogResult.Yes)
+                    {
+                        userPanel.Hide();
+                    }
+                }
+               
+            }
+            else
+            {
+                MessageBox.Show("Geçerli bir sayı girin.");
+            }
+        }
+
+
+
     }
 
 }
