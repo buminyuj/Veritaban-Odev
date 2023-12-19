@@ -96,7 +96,7 @@ namespace veritabanıbağlantı1
             }
         }
 
-        public void DeleteCard(int id)//Urun silme fonksiyonu
+        public void DeleteCard(int KartId)//Urun silme fonksiyonu
         {
             string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True"; // Bağlantı dizesini kendi veritabanı bağlantınıza uygun şekilde değiştirin.
 
@@ -108,7 +108,7 @@ namespace veritabanıbağlantı1
 
                 using (SqlCommand command = new SqlCommand(queryDellCard, connection))
                 {
-                    command.Parameters.AddWithValue("@Id", id);
+                    command.Parameters.AddWithValue("@Id", KartId);
                     command.ExecuteNonQuery();
                 }
             }
@@ -121,8 +121,85 @@ namespace veritabanıbağlantı1
 
         private void button3_Click(object sender, EventArgs e)//Kart sil
         {
-            DeleteCard(MusteriID);
+            int selectedRowIndex = dataGridView1.SelectedCells[0].RowIndex;
+
+            if (selectedRowIndex >= 0)
+            {
+                int kartId = Convert.ToInt32(dataGridView1.Rows[selectedRowIndex].Cells["KartId"].Value);
+
+                DeleteCard(kartId);
+
+                // Show a message box indicating that the card has been successfully deleted
+                MessageBox.Show("Kart başarıyla silindi.", "Başarı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Refresh the displayed cards after deletion
+                ShowMyCards();
+            }
+            else
+            {
+                MessageBox.Show("Lütfen bir kart seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        
+        int i= 0;   
+        private void button4_Click(object sender, EventArgs e)//Kart Düzenle
+        {
+            string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string queryUpdate = "UPDATE KrediKart SET KartNo=@KartNo, Ad=@Ad, Soyad=@Soyad, CVV=@CVV, Tarih=@Tarih WHERE KartId=@Id";
+
+                    using (SqlCommand command = new SqlCommand(queryUpdate, connection))
+                    {
+                        command.Parameters.AddWithValue("@KartNo", textBox1.Text);
+                        command.Parameters.AddWithValue("@Ad", textBox2.Text.ToLower());
+                        command.Parameters.AddWithValue("@Soyad", textBox3.Text.ToLower());
+                        command.Parameters.AddWithValue("@CVV", textBox4.Text);
+                       
+
+                        // Tarih değerini DateTime türüne dönüştürme
+                        DateTime Tarih;
+
+                        // Eğer tarih bilgisi girilmişse, dönüşüm yap
+                        if (!string.IsNullOrWhiteSpace(maskedTextBox1.Text) && DateTime.TryParse(maskedTextBox1.Text, out Tarih))
+                        {
+                            command.Parameters.Add("@Tarih", SqlDbType.DateTime).Value = Tarih;
+                        }
+                        else
+                        {
+                            // Eğer tarih bilgisi girilmemişse, mevcut tarih bilgisini kullan
+                            command.Parameters.Add("@Tarih", SqlDbType.DateTime).Value = dataGridView1.Rows[i].Cells[5].Value;
+                        }
+
+                        command.Parameters.AddWithValue("@Id", dataGridView1.Rows[i].Cells[0].Value);
+
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Kayıtlar Başarıyla Güncellendi!");
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Bir hata oluştu: " + ex.ToString());
+            }
+        }
+
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            i = e.RowIndex;
+            textBox1.Text = dataGridView1.Rows[i].Cells[2].Value.ToString();
+            textBox2.Text = dataGridView1.Rows[i].Cells[3].Value.ToString();
+            textBox3.Text = dataGridView1.Rows[i].Cells[4].Value.ToString();
+            textBox4.Text = dataGridView1.Rows[i].Cells[6].Value.ToString();
+            maskedTextBox1.Text = dataGridView1.Rows[i].Cells[5].Value as string;
         }
     }
-}
+    }
+
 
