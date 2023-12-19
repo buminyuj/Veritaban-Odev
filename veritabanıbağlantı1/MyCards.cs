@@ -67,7 +67,7 @@ namespace veritabanıbağlantı1
             }
         }
 
-        public void ShowMyCards()
+        public void ShowMyCards()//kart listeleme fonksiyonu
         {
 
             string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True"; // Bağlantı dizesini kendi veritabanı bağlantınıza uygun şekilde değiştirin.
@@ -140,6 +140,7 @@ namespace veritabanıbağlantı1
                 MessageBox.Show("Lütfen bir kart seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         
         int i= 0;   
         private void button4_Click(object sender, EventArgs e)//Kart Düzenle
