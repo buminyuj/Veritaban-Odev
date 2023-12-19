@@ -96,12 +96,33 @@ namespace veritabanıbağlantı1
             }
         }
 
+        public void DeleteCard(int id)//Urun silme fonksiyonu
+        {
+            string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True"; // Bağlantı dizesini kendi veritabanı bağlantınıza uygun şekilde değiştirin.
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string queryDellCard = "DELETE FROM KrediKart WHERE KartId=@Id";
+
+                using (SqlCommand command = new SqlCommand(queryDellCard, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", id);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)//KartlarımıGörüntüle
         {
             ShowMyCards();
         }
 
-
+        private void button3_Click(object sender, EventArgs e)//Kart sil
+        {
+            DeleteCard(MusteriID);
+        }
     }
 }
 
