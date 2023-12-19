@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Sql;
 using System.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace veritabanıbağlantı1
 {
     public partial class Form1 : Form
     {
+        private int loggedInCustomerID;
         SqlConnection con;
         SqlDataReader dr;
         SqlCommand com;
@@ -42,6 +44,40 @@ namespace veritabanıbağlantı1
         {
 
         }
+        public int GetCustomerIDByUsernameAndPassword(string musteriAd, string musteriSoyad, string email, string sifre)
+        {
+            int customerID = -1; // -1, geçersiz bir müşteri ID'si olarak kullanılabilir
+
+            string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT MusteriID FROM Musteri WHERE MusteriAd = @MusteriAd AND MusteriSoyad = @MusteriSoyad AND Email = @Email AND Sifre = @Sifre";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@MusteriAd", musteriAd);
+                    command.Parameters.AddWithValue("@MusteriSoyad", musteriSoyad);
+                    command.Parameters.AddWithValue("@Email", email); // email parametresi eklendi
+                    command.Parameters.AddWithValue("@Sifre", sifre);
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        // Kullanıcı bulundu, müşteri ID'sini al
+                        customerID = Convert.ToInt32(result);
+                    }
+                }
+            }
+
+            return customerID;
+        }
+
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -63,6 +99,7 @@ namespace veritabanıbağlantı1
                 if (dr.Read())
                 {
                     MessageBox.Show("Tebrikler Giriş Başarılı!");
+                    loggedInCustomerID = GetCustomerIDByUsernameAndPassword(ad, soyad,email,şifre);
                     UserPanel geçiş = new UserPanel();
                     geçiş.Show();
                     this.Hide();
@@ -90,6 +127,11 @@ namespace veritabanıbağlantı1
             {
                 con.Close();
             }
+        }
+
+        public int GetLoggedInCustomerID()
+        {
+            return loggedInCustomerID;
         }
 
     }

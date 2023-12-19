@@ -64,13 +64,16 @@
             this.textBox14 = new System.Windows.Forms.TextBox();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button1.Location = new System.Drawing.Point(559, 419);
+            this.button1.Location = new System.Drawing.Point(855, 419);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(173, 56);
             this.button1.TabIndex = 0;
@@ -241,7 +244,7 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button3.Location = new System.Drawing.Point(282, 505);
+            this.button3.Location = new System.Drawing.Point(407, 508);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(146, 50);
             this.button3.TabIndex = 18;
@@ -252,7 +255,7 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button4.Location = new System.Drawing.Point(434, 505);
+            this.button4.Location = new System.Drawing.Point(559, 508);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(146, 50);
             this.button4.TabIndex = 19;
@@ -263,7 +266,7 @@
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button5.Location = new System.Drawing.Point(586, 505);
+            this.button5.Location = new System.Drawing.Point(721, 508);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(146, 50);
             this.button5.TabIndex = 20;
@@ -425,7 +428,7 @@
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button7.Location = new System.Drawing.Point(738, 505);
+            this.button7.Location = new System.Drawing.Point(873, 508);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(146, 50);
             this.button7.TabIndex = 36;
@@ -433,12 +436,44 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
+            // button8
+            // 
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button8.Location = new System.Drawing.Point(603, 450);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(146, 50);
+            this.button8.TabIndex = 37;
+            this.button8.Text = "Ana Ekrana Gönder";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // textBox15
+            // 
+            this.textBox15.Location = new System.Drawing.Point(603, 424);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.Size = new System.Drawing.Size(151, 20);
+            this.textBox15.TabIndex = 38;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label15.ForeColor = System.Drawing.Color.Lime;
+            this.label15.Location = new System.Drawing.Point(263, 425);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(334, 15);
+            this.label15.TabIndex = 39;
+            this.label15.Text = "Değiştirmek istediğiniz label\'In indeksini yazınız-->";
+            // 
             // AdminProductPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(1424, 592);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.textBox15);
+            this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.textBox14);
@@ -521,5 +556,8 @@
         private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.Label label15;
     }
 }
