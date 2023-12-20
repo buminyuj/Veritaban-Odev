@@ -26,6 +26,16 @@ namespace veritabanıbağlantı1
             mycards.Show();
             this.Hide();
         }
+
+        private void button3_Click(object sender, EventArgs e)//adreslerim
+        {
+            Form1 loginForm = new Form1();
+            loginForm.ShowDialog();
+            int loggedInCustomerID = loginForm.GetLoggedInCustomerID();
+            MyAdresses myadres = new MyAdresses(loggedInCustomerID);
+            myadres.Show();
+            this.Hide();
+        }
     }
     }
 

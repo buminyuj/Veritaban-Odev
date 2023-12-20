@@ -8,45 +8,46 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace veritabanıbağlantı1
 {
-    public partial class MyCards : Form
+    public partial class MyAdresses : Form
     {
         private int MusteriID;
         private readonly int loggedInCustomerID;
-
-        public MyCards(int musteriID)
+        public MyAdresses(int musteriID)//içine bu gelebilir duruma göre bozulursa denenir-->int loggedInCustomerID, int musteriID
         {
             InitializeComponent();
             MusteriID = musteriID;
-
         }
 
-        private void button2_Click(object sender, EventArgs e)//Kart Ekle
+        private void button2_Click(object sender, EventArgs e)//adres ekle
         {
             string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True";
-            string KartNo = textBox1.Text.ToLower();
-            string Ad = textBox2.Text.ToLower();
-            string Soyad = textBox3.Text.ToLower();
-            var Tarih = maskedTextBox1.Text;
-            string CVV = textBox4.Text;
+            string Sehir = textBox1.Text.ToLower();
+            string Ilce = textBox2.Text.ToLower();
+            string Mahalle = textBox3.Text.ToLower();
+            string Sokak = textBox4.Text.ToLower();
+            string AdresNo = textBox5.Text.ToLower();
+            string Blok = textBox6.Text.ToLower();
+            string DaireNo = textBox7.Text.ToLower();
 
             try
             {
                 using (SqlConnection connnection = new SqlConnection(connectionString))
                 {
                     connnection.Open();
-                    string queryAdd = "INSERT INTO KrediKart (MusteriID,KartNo,Ad,Soyad,Tarih,CVV) VALUES (@MusteriID,@KartNo,@Ad,@Soyad,@Tarih,@Cvv)";
+                    string queryAdd = "INSERT INTO Adresler (MusteriID,Sehir,Ilce,Mahalle,Sokak,AdresNo,Blok,DaireNo) VALUES (@MusteriID,@Sehir,@Ilce,@Mahalle,@Sokak,@AdresNo,@Blok,@DaireNo)";
                     using (SqlCommand command = new SqlCommand(queryAdd, connnection))
                     {
                         command.Parameters.AddWithValue("@MusteriID", MusteriID);
-                        command.Parameters.AddWithValue("@KartNo", KartNo);
-                        command.Parameters.AddWithValue("@Ad", Ad);
-                        command.Parameters.AddWithValue("@Soyad", Soyad);
-                        command.Parameters.AddWithValue("@Tarih", Tarih);
-                        command.Parameters.AddWithValue("@Cvv", CVV);
+                        command.Parameters.AddWithValue("@Sehir", Sehir);
+                        command.Parameters.AddWithValue("@Ilce", Ilce);
+                        command.Parameters.AddWithValue("@Mahalle", Mahalle);
+                        command.Parameters.AddWithValue("@Sokak", Sokak);
+                        command.Parameters.AddWithValue("@AdresNo", AdresNo);
+                        command.Parameters.AddWithValue("@Blok", Blok);
+                        command.Parameters.AddWithValue("@DaireNo", DaireNo);
                         int affectedRows = command.ExecuteNonQuery();
 
                         if (affectedRows > 0)
@@ -67,7 +68,7 @@ namespace veritabanıbağlantı1
             }
         }
 
-        public void ShowMyCards()//kart listeleme fonksiyonu
+        public void ShowMyAdresses()//adres listeleme fonksiyonu
         {
 
             string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True"; // Bağlantı dizesini kendi veritabanı bağlantınıza uygun şekilde değiştirin.
@@ -78,7 +79,7 @@ namespace veritabanıbağlantı1
 
                 //MyCards myCardsForm = new MyCards(loggedInCustomerID);
                 //myCardsForm.Show();
-                string queryList = "SELECT * FROM KrediKart WHERE MusteriID = @MusteriID";
+                string queryList = "SELECT * FROM Adresler WHERE MusteriID = @MusteriID";
 
                 using (SqlCommand command = new SqlCommand(queryList, connection))
                 {
@@ -91,12 +92,20 @@ namespace veritabanıbağlantı1
                     textBox2.Clear();
                     textBox3.Clear();
                     textBox4.Clear();
-                    maskedTextBox1.Clear();
+                    textBox5.Clear();
+                    textBox6.Clear();
+                    textBox7.Clear();
+
                 }
             }
         }
 
-        public void DeleteCard(int KartId)//Kart silme fonksiyonu
+        private void button1_Click(object sender, EventArgs e)//adres görüntüle
+        {
+            ShowMyAdresses();
+        }
+
+        public void DeleteAdress(int AdresId)//Adres silme fonksiyonu
         {
             string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True"; // Bağlantı dizesini kendi veritabanı bağlantınıza uygun şekilde değiştirin.
 
@@ -104,36 +113,32 @@ namespace veritabanıbağlantı1
             {
                 connection.Open();
 
-                string queryDellCard = "DELETE FROM KrediKart WHERE KartId=@Id";
+                string queryDellAdress = "DELETE FROM Adresler WHERE AdresId=@Id";
 
-                using (SqlCommand command = new SqlCommand(queryDellCard, connection))
+                using (SqlCommand command = new SqlCommand(queryDellAdress, connection))
                 {
-                    command.Parameters.AddWithValue("@Id", KartId);
+                    command.Parameters.AddWithValue("@Id", AdresId);
                     command.ExecuteNonQuery();
                 }
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)//KartlarımıGörüntüle
-        {
-            ShowMyCards();
-        }
-
-        private void button3_Click(object sender, EventArgs e)//Kart sil
+       
+        private void button4_Click(object sender, EventArgs e)//Adres Sil
         {
             int selectedRowIndex = dataGridView1.SelectedCells[0].RowIndex;
 
             if (selectedRowIndex >= 0)
             {
-                int kartId = Convert.ToInt32(dataGridView1.Rows[selectedRowIndex].Cells["KartId"].Value);
+                int AdresId = Convert.ToInt32(dataGridView1.Rows[selectedRowIndex].Cells["AdresId"].Value);
 
-                DeleteCard(kartId);
+                DeleteAdress(AdresId);
 
                 // Show a message box indicating that the card has been successfully deleted
-                MessageBox.Show("Kart başarıyla silindi.", "Başarı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Adres başarıyla silindi.", "Başarı", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Refresh the displayed cards after deletion
-                ShowMyCards();
+                ShowMyAdresses();
             }
             else
             {
@@ -141,9 +146,8 @@ namespace veritabanıbağlantı1
             }
         }
 
-        
-        int i= 0;   
-        private void button4_Click(object sender, EventArgs e)//Kart Düzenle
+        int i = 0;
+        private void button3_Click(object sender, EventArgs e)//adres düzenle
         {
             string connectionString = "Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True";
 
@@ -153,35 +157,22 @@ namespace veritabanıbağlantı1
                 {
                     connection.Open();
 
-                    string queryUpdate = "UPDATE KrediKart SET KartNo=@KartNo, Ad=@Ad, Soyad=@Soyad, CVV=@CVV, Tarih=@Tarih WHERE KartId=@Id";
+                    string queryUpdate = "UPDATE Adresler SET Sehir=@Sehir, Ilce=@Ilce, Mahalle=@Mahalle, Sokak=@Sokak, AdresNo=@AdresNo,Blok=@Blok,DaireNo=@DaireNo WHERE AdresId=@Id";
 
                     using (SqlCommand command = new SqlCommand(queryUpdate, connection))
                     {
-                        command.Parameters.AddWithValue("@KartNo", textBox1.Text);
-                        command.Parameters.AddWithValue("@Ad", textBox2.Text.ToLower());
-                        command.Parameters.AddWithValue("@Soyad", textBox3.Text.ToLower());
-                        command.Parameters.AddWithValue("@CVV", textBox4.Text);
-                       
-
-                        // Tarih değerini DateTime türüne dönüştürme
-                        DateTime Tarih;
-
-                        // Eğer tarih bilgisi girilmişse, dönüşüm yap
-                        if (!string.IsNullOrWhiteSpace(maskedTextBox1.Text) && DateTime.TryParse(maskedTextBox1.Text, out Tarih))
-                        {
-                            command.Parameters.Add("@Tarih", SqlDbType.DateTime).Value = Tarih;
-                        }
-                        else
-                        {
-                            // Eğer tarih bilgisi girilmemişse, mevcut tarih bilgisini kullan
-                            command.Parameters.Add("@Tarih", SqlDbType.DateTime).Value = dataGridView1.Rows[i].Cells[5].Value;
-                        }
-
-                        command.Parameters.AddWithValue("@Id", dataGridView1.Rows[i].Cells[0].Value);
+                        command.Parameters.AddWithValue("@Sehir", textBox1.Text.ToLower());
+                        command.Parameters.AddWithValue("@Ilce", textBox2.Text.ToLower());
+                        command.Parameters.AddWithValue("@Mahalle", textBox3.Text.ToLower());
+                        command.Parameters.AddWithValue("@Sokak", textBox4.Text.ToLower());
+                        command.Parameters.AddWithValue("@AdresNo", textBox5.Text.ToLower());
+                        command.Parameters.AddWithValue("@Blok", textBox6.Text.ToLower());
+                        command.Parameters.AddWithValue("@DaireNo", textBox7.Text.ToLower());
+                        command.Parameters.AddWithValue("@Id", dataGridView1.Rows[i].Cells[8].Value);
 
                         command.ExecuteNonQuery();
                         MessageBox.Show("Kayıtlar Başarıyla Güncellendi!");
-                        
+
                     }
                 }
             }
@@ -194,13 +185,14 @@ namespace veritabanıbağlantı1
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             i = e.RowIndex;
-            textBox1.Text = dataGridView1.Rows[i].Cells[2].Value.ToString();
-            textBox2.Text = dataGridView1.Rows[i].Cells[3].Value.ToString();
-            textBox3.Text = dataGridView1.Rows[i].Cells[4].Value.ToString();
-            textBox4.Text = dataGridView1.Rows[i].Cells[6].Value.ToString();
-            maskedTextBox1.Text = dataGridView1.Rows[i].Cells[5].Value as string;
+            textBox1.Text = dataGridView1.Rows[i].Cells[1].Value.ToString();
+            textBox2.Text = dataGridView1.Rows[i].Cells[2].Value.ToString();
+            textBox3.Text = dataGridView1.Rows[i].Cells[3].Value.ToString();
+            textBox4.Text = dataGridView1.Rows[i].Cells[4].Value.ToString();
+            textBox5.Text = dataGridView1.Rows[i].Cells[5].Value.ToString();
+            textBox6.Text = dataGridView1.Rows[i].Cells[6].Value.ToString();
+            textBox7.Text = dataGridView1.Rows[i].Cells[7].Value.ToString();
+
         }
     }
-    }
-
-
+}
