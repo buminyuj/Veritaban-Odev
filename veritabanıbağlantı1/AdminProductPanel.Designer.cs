@@ -67,13 +67,19 @@
             this.button8 = new System.Windows.Forms.Button();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button1.Location = new System.Drawing.Point(855, 419);
+            this.button1.Location = new System.Drawing.Point(871, 410);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(173, 56);
             this.button1.TabIndex = 0;
@@ -234,6 +240,8 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(234, 14);
             this.dataGridView1.Name = "dataGridView1";
@@ -439,9 +447,9 @@
             // button8
             // 
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button8.Location = new System.Drawing.Point(603, 450);
+            this.button8.Location = new System.Drawing.Point(728, 410);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(146, 50);
+            this.button8.Size = new System.Drawing.Size(129, 41);
             this.button8.TabIndex = 37;
             this.button8.Text = "Ana Ekrana Gönder";
             this.button8.UseVisualStyleBackColor = true;
@@ -449,7 +457,7 @@
             // 
             // textBox15
             // 
-            this.textBox15.Location = new System.Drawing.Point(603, 424);
+            this.textBox15.Location = new System.Drawing.Point(571, 410);
             this.textBox15.Name = "textBox15";
             this.textBox15.Size = new System.Drawing.Size(151, 20);
             this.textBox15.TabIndex = 38;
@@ -459,11 +467,66 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label15.ForeColor = System.Drawing.Color.Lime;
-            this.label15.Location = new System.Drawing.Point(263, 425);
+            this.label15.Location = new System.Drawing.Point(231, 411);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(334, 15);
             this.label15.TabIndex = 39;
             this.label15.Text = "Değiştirmek istediğiniz label\'In indeksini yazınız-->";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label16.ForeColor = System.Drawing.Color.Lime;
+            this.label16.Location = new System.Drawing.Point(263, 451);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(63, 15);
+            this.label16.TabIndex = 40;
+            this.label16.Text = "Filepath:";
+            // 
+            // textBox16
+            // 
+            this.textBox16.Location = new System.Drawing.Point(332, 450);
+            this.textBox16.Name = "textBox16";
+            this.textBox16.Size = new System.Drawing.Size(151, 20);
+            this.textBox16.TabIndex = 41;
+            // 
+            // button9
+            // 
+            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button9.Location = new System.Drawing.Point(489, 438);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(111, 32);
+            this.button9.TabIndex = 42;
+            this.button9.Text = "Browse";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button10
+            // 
+            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button10.Location = new System.Drawing.Point(606, 439);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(111, 31);
+            this.button10.TabIndex = 43;
+            this.button10.Text = "İmport";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button11
+            // 
+            this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button11.Location = new System.Drawing.Point(547, 471);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(111, 31);
+            this.button11.TabIndex = 44;
+            this.button11.Text = "Save";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // AdminProductPanel
             // 
@@ -471,6 +534,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(1424, 592);
+            this.Controls.Add(this.button11);
+            this.Controls.Add(this.button10);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.textBox16);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.textBox15);
             this.Controls.Add(this.button8);
@@ -512,6 +580,7 @@
             this.Controls.Add(this.button1);
             this.Name = "AdminProductPanel";
             this.Text = "AdminProductPanel";
+            this.Load += new System.EventHandler(this.AdminProductPanel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -559,5 +628,11 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
