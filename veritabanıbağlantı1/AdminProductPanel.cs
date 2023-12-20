@@ -526,6 +526,13 @@ namespace veritabanıbağlantı1
             MessageBox.Show("ÜRÜNLER KAYDEDİLDİ...");
             fillGrid();
         }
+
+        private void button12_Click(object sender, EventArgs e)//database yedekleme ve yedekten geri yükleme sayfasına gider
+        {
+            DataBaseBackupAndRestore dataBaseBackupAndRestore = new DataBaseBackupAndRestore();
+            dataBaseBackupAndRestore.Show();
+            this.Hide();
+        }
     }
 
 }
