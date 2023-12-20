@@ -102,6 +102,12 @@
     <Compile Include="MyAccountPanel.Designer.cs">
       <DependentUpon>MyAccountPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyAdresses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyAdresses.Designer.cs">
+      <DependentUpon>MyAdresses.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyCards.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyAccountPanel.resx">
       <DependentUpon>MyAccountPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyAdresses.resx">
+      <DependentUpon>MyAdresses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyCards.resx">
       <DependentUpon>MyCards.cs</DependentUpon>
