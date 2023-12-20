@@ -14,12 +14,14 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Data.Sql;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Data.OleDb;
 
 
 namespace veritabanıbağlantı1
 {
     public partial class AdminProductPanel : Form
     {
+       SqlConnection con = new SqlConnection("Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True");
         private UserPanel userPanel;
         public string textforlabel1;
         public string textforlabel2;
@@ -455,8 +457,75 @@ namespace veritabanıbağlantı1
             }
         }
 
+        private void button9_Click(object sender, EventArgs e)//Browse button
+        {
+            OpenFileDialog fdlg=new OpenFileDialog();
+            fdlg.Title = "Select File";
+            fdlg.FileName=textBox16.Text;
+            fdlg.Filter = "Excel Sheet (*.xls)|*.xls|All Files(*.*)|(*.*)";
+            fdlg.FilterIndex = 1;//sonradan 0 yapmak gerekebilir.
+            fdlg.RestoreDirectory = true;
+            if(fdlg.ShowDialog() == DialogResult.OK)
+            {
+                textBox16.Text = fdlg.FileName;
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)//import button
+        {
+             //OleDbConnection theConnection = new OleDbConnection(@"provider=Microsoft.Jet.OLEDB.4.0;data source='" + textBox16.Text + "';Extended Properties=\"Excel 8.0;HDR=NO;IMEX=1\"");
+            OleDbConnection theConnection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" + textBox16.Text + "';Extended Properties='Excel 12.0;HDR=NO;IMEX=1'");
+
+            //OleDbConnection theConnection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" + textBox16.Text + "';Extended Properties='Excel 12.0;HDR=NO;IMEX=1'");
 
 
+            theConnection.Open();
+            OleDbDataAdapter theDataAdapter = new OleDbDataAdapter("Select * From[Sayfa1$]", theConnection);
+            DataSet theSD=new DataSet();
+            System.Data.DataTable dt =new System.Data.DataTable();
+            theDataAdapter.Fill(dt);
+            this.dataGridView1.DataSource = dt.DefaultView;
+        }
+
+        void fillGrid()
+        {
+            //SqlConnection con = new SqlConnection("Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True");
+            con.Open();
+            SqlDataAdapter da=new SqlDataAdapter("select * from Urun",con);
+            System.Data.DataTable dt = new System.Data.DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
+            con.Close();
+
+        }
+
+        private void AdminProductPanel_Load(object sender, EventArgs e)
+        {
+            fillGrid();
+        }
+
+        private void button11_Click(object sender, EventArgs e)//save button
+        {
+            SqlConnection con2 = new SqlConnection("Data Source=DESKTOP-JUSKBE1\\SQLEXPRESS01;Initial Catalog=ProjeDeneme1;Integrated Security=True");
+            con2.Open();
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                SqlCommand cmdnd = new SqlCommand("Insert into Urun(UrunAdi,Marka,Model,Fiyat,StokMiktari,GarantiSuresi,Ozellikler) values(@UrunAdi, @Marka, @Model, @Fiyat, @StokMiktari, @GarantiSuresi, @Ozellikler)", con2);
+                cmdnd.Parameters.AddWithValue("@UrunAdi", dataGridView1.Rows[i].Cells[1].Value.ToString());
+                cmdnd.Parameters.AddWithValue("@Marka", dataGridView1.Rows[i].Cells[2].Value.ToString());
+                cmdnd.Parameters.AddWithValue("@Model", dataGridView1.Rows[i].Cells[3].Value.ToString());
+                cmdnd.Parameters.AddWithValue("@Fiyat", dataGridView1.Rows[i].Cells[4].Value);
+                cmdnd.Parameters.AddWithValue("@StokMiktari", dataGridView1.Rows[i].Cells[5].Value);
+                cmdnd.Parameters.AddWithValue("@GarantiSuresi", dataGridView1.Rows[i].Cells[6].Value);
+                cmdnd.Parameters.AddWithValue("@Ozellikler", dataGridView1.Rows[i].Cells[7].Value);
+                cmdnd.ExecuteNonQuery();
+
+            }
+            con2.Close();
+
+            MessageBox.Show("ÜRÜNLER KAYDEDİLDİ...");
+            fillGrid();
+        }
     }
 
 }
