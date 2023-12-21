@@ -474,9 +474,10 @@ namespace veritabanıbağlantı1
         private void button10_Click(object sender, EventArgs e)//import button
         {
              //OleDbConnection theConnection = new OleDbConnection(@"provider=Microsoft.Jet.OLEDB.4.0;data source='" + textBox16.Text + "';Extended Properties=\"Excel 8.0;HDR=NO;IMEX=1\"");
-            OleDbConnection theConnection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" + textBox16.Text + "';Extended Properties='Excel 12.0;HDR=NO;IMEX=1'");
-
             //OleDbConnection theConnection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" + textBox16.Text + "';Extended Properties='Excel 12.0;HDR=NO;IMEX=1'");
+
+            OleDbConnection theConnection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" + textBox16.Text + "';Extended Properties='Excel 12.0;HDR=NO;IMEX=1'");
+            //OleDbConnection theConnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + textBox16.Text + "';Extended Properties='Excel 8.0;HDR=NO;IMEX=1'");
 
 
             theConnection.Open();
