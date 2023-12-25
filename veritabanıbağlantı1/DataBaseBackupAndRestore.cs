@@ -69,18 +69,18 @@ namespace veritabanıbağlantı1
             {
                 con.Open();
 
-                // Veritabanını kapatabilmeniz için kullanıcıyı SINGLE_USER moduna getirme
-                string str1 = string.Format("ALTER DATABASE [ " + database + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE ");
+                // Set the database to SINGLE_USER mode
+                string str1 = string.Format("ALTER DATABASE [{0}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE", database);
                 SqlCommand cmd1 = new SqlCommand(str1, con);
                 cmd1.ExecuteNonQuery();
 
-                // Restore işlemi
-                string str2 = "USE MASTER RESTORE DATABASE [" + database + "] FROM DISK='" + textBox2.Text + "' WITH REPLACE;";
+                // Restore the database
+                string str2 = string.Format("USE MASTER RESTORE DATABASE [{0}] FROM DISK='{1}' WITH REPLACE", database, textBox2.Text);
                 SqlCommand cmd2 = new SqlCommand(str2, con);
                 cmd2.ExecuteNonQuery();
 
-                // Kullanıcıyı tekrar MULTI_USER moduna getirme
-                string str3 = string.Format("ALTER DATABASE [" + database + "] SET MULTI_USER");
+                // Set the database back to MULTI_USER mode
+                string str3 = string.Format("ALTER DATABASE [{0}] SET MULTI_USER", database);
                 SqlCommand cmd3 = new SqlCommand(str3, con);
                 cmd3.ExecuteNonQuery();
 
@@ -89,6 +89,7 @@ namespace veritabanıbağlantı1
             catch (Exception ex)
             {
                 MessageBox.Show("Hata oluştu: " + ex.Message);
+                // Add additional logging or debugging information here
             }
             finally
             {
@@ -98,6 +99,7 @@ namespace veritabanıbağlantı1
                 }
             }
         }
+
 
 
     }
